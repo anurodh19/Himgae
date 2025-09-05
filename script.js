@@ -1,6 +1,4 @@
-/* HIMGAE — Vanilla JS interactions */
-
-// Responsive navigation: hamburger toggle
+// Responsive Navigation Toggle
 const body = document.body;
 const toggleBtn = document.querySelector('.nav-toggle');
 const nav = document.getElementById('primary-nav');
@@ -12,7 +10,6 @@ if (toggleBtn) {
     toggleBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
   });
 
-  // Close menu when a nav link is clicked (mobile)
   nav?.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       body.classList.remove('menu-open');
@@ -21,7 +18,7 @@ if (toggleBtn) {
   });
 }
 
-// Carousel logic
+// Carousel Logic
 const track = document.querySelector('.carousel-track');
 const slides = Array.from(document.querySelectorAll('.slide'));
 const prevBtn = document.querySelector('.carousel-btn.prev');
@@ -53,14 +50,14 @@ function stopAutoplay() { if (autoplayId) clearInterval(autoplayId); }
 function restartAutoplay() { startAutoplay(); }
 startAutoplay();
 
-// Pause autoplay on hover/focus (desktop)
+// Pause on hover/focus
 const carousel = document.querySelector('.carousel');
 carousel?.addEventListener('mouseenter', stopAutoplay);
 carousel?.addEventListener('mouseleave', startAutoplay);
 carousel?.addEventListener('focusin', stopAutoplay);
 carousel?.addEventListener('focusout', startAutoplay);
 
-// IntersectionObserver for reveal animations
+// Scroll Reveal Animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -72,7 +69,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 
-// Smooth scroll for internal nav links
+// Smooth Scroll for Anchor Links
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     const targetId = link.getAttribute('href')?.slice(1);
@@ -85,12 +82,17 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-// Back to top button behavior
+// Back to Top Button
 const backBtn = document.getElementById('backToTop');
 if (backBtn) {
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 600) backBtn.classList.add('show');
-    else backBtn.classList.remove('show');
+    if (window.scrollY > 600) {
+      backBtn.classList.add('show');
+    } else {
+      backBtn.classList.remove('show');
+    }
   });
-  backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 }
